@@ -1,0 +1,223 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: hsl(0, 0%, 96%);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #EDEDED;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    background-color: #3E73FF;
+    padding: 5px 15px;
+    border-radius: 8px;
+    margin-right: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.top-bar input {
+    width: 1000px;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.icons i {
+    margin-left: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.icons i:hover {
+    color: #3E73FF;
+    transform: scale(1.1);
+}
+
+.favorites {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.favorites i {
+    margin-right: 5px;
+    color: #111;
+}
+
+.favorites span {
+    margin-left: 5px;
+}
+
+.favorites:hover {
+    color: #3E73FF;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.favorites:hover i, 
+.favorites:hover span {
+    color: hsl(0, 100%, 50%);
+}
+
+.navigation-wrapper {
+    background-color: #f1f1f1;
+    padding: 15px 0;
+    width: 100vw;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.navigation a {
+    margin: 0 15px;
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+    color: #3E73FF;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #111;
+    color: white;
+}
+
+.dark-mode .top-bar {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.dark-mode .top-bar * {
+    color: white !important;
+}
+
+.dark-mode .logo {
+    background-color: #0040c1;
+    color: white;
+}
+
+.dark-mode .favorites {
+    color: white;
+}
+
+.dark-mode .favorites i {
+    color: white;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.dark-mode .favorites:hover {
+    transform: scale(1.05);
+}
+
+.dark-mode .favorites:hover i,
+.dark-mode .favorites:hover span {
+    color: #ff0000;
+}
+
+.dark-mode .navigation-wrapper {
+    background-color: #444;
+}
+
+.dark-mode .navigation-wrapper a {
+    color: white;
+}
+
+.dark-mode .navigation-wrapper a:hover {
+    color: #3E73FF;
+}
+
+.dark-mode h1 {
+    color: white;
+}
+
+/* Add transitions */
+.top-bar,
+.logo,
+.navigation-wrapper,
+.navigation a,
+.icons i,
+.favorites {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Search Bar Styles */
+.search-container {
+    position: relative;
+    width: 73%;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 8px 10px 8px 30px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: black;
+    color: white;
+}
+
+/* Dark Mode for Search Bar */
+.dark-mode .search-container input {
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #555;
+}
+
+.search-container .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 18px;
+}
+
+
+/* Force navigation wrapper to change in dark mode */
+.dark-mode .navigation-wrapper {
+    background-color: #1e1e1e !important;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Change brand links color */
+.dark-mode .navigation a {
+    color: #dddddd !important;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for brand links in dark mode */
+.dark-mode .navigation a:hover {
+    color: #3E73FF !important;
+}
+
+/* ... (keep your other existing styles here, like product cards, etc.) */

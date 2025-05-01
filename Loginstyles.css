@@ -1,0 +1,157 @@
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f3f2f1;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* Logo Styling */
+.logo {
+  background-color: #0056e0;
+  color: black; 
+  font-size: 3.5rem; 
+  font-weight: bold;
+  padding: 1rem 11rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Container and Form Box */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* vertically center content */
+  width: 100%;
+  padding: 2rem;
+  margin: 0 auto;  /* Make sure the container itself is centered */
+  max-width: 100%;
+}
+
+.form-box {
+  border: 1px solid #ccc;
+  background-color: white;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+  box-shadow: inset 0 -3px 0 #ccc;
+}
+
+.tab {
+  text-decoration: none;
+  padding: 1rem;
+  color: #555;
+  font-weight: 500;
+  text-align: center;
+  flex: 1;
+}
+
+.tab.active {
+  font-weight: bold;
+  color: black;
+  border-bottom: 3px solid black;
+}
+
+/* Headings */
+.form-box h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  text-align: left;
+  margin-left: 0;
+}
+
+/* Input Labels and Fields */
+label {
+  display: none;
+  
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #444;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  outline: none;
+  text-align: left; /* Align text to the left */
+
+}
+
+
+/* Button */
+.btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: black;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #333;
+}
+
+/* Error Message */
+.error-message {
+  margin-top: 1rem;
+  color: red;
+  font-size: 0.9rem;
+}
+
+/* Theme Toggle (Optional) */
+.theme-toggle {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.theme-toggle button {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.logo-box {
+  width: 100%;
+  background-color: white;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid black; /* this adds the black line */
+  margin-bottom: 2rem; /* this adds space below the white header */
+}

@@ -1,0 +1,321 @@
+/* stepx_styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: hsl(0, 0%, 96%);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #EDEDED;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+  background-color: #3E73FF;
+  padding: 5px 15px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.top-bar input {
+  width: 1000px;
+  padding: 8px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-right: 20px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.icons i {
+  margin-left: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+}
+
+.icons i:hover {
+  color: #3E73FF; /* Change color on hover */
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+
+.favorites {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+  /*margin-right: 15px; /* Space between Favorites and Cart icon */
+}
+
+.favorites i {
+  margin-right: 5px; /* Space between icon and text */
+  color: #111;
+}
+
+.favorites span {
+  margin-left: 5px;
+}
+
+.favorites:hover {
+  color: #3E73FF; /* Change the text color on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+  transition: all 0.3s ease;
+}
+
+.favorites:hover i, 
+.favorites:hover span {
+  color: hsl(0, 100%, 50%); /* Apply hover color to both icon and text */
+}
+
+.navigation-wrapper {
+  background-color: #f1f1f1;
+  padding: 15px 0;
+  width: 100vw; /* Full viewport width */
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+
+}
+
+.navigation a {
+  margin: 0 15px;
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  color: #3E73FF;
+}
+
+
+
+
+.product-detail-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    margin: 50px auto;
+    max-width: 1100px;
+    padding: 20px;
+  }
+  
+  .left-column {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .product-image {
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+  
+  .product-description {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6;
+  }
+  
+  .right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .product-price {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+  
+  .size-label {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .sizes-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 15px 0;
+  }
+  
+  .size-option {
+    padding: 10px 0;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .size-option:hover,
+  .size-option.selected {
+    background-color: black;
+    color: white;
+  }
+  
+  
+  .add-to-cart-btn {
+    background-color: black;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .favorite-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: 1px solid black;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 0 auto;
+    min-width: 600px; /* ✅ force the button to be longer */
+}
+
+  
+
+.theme-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between the buttons */
+}
+
+.theme-buttons button {
+    font-size: 30px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #ddd;
+    transition: background-color 0.3s;
+}
+
+.theme-buttons button:hover {
+    background-color: #ccc;
+}
+
+.dark-mode {
+    background-color: #111;
+    color: white;
+}
+
+.dark-mode .top-bar {
+  background-color: #222;
+}
+
+.dark-mode .favorites {
+  color: white; /* dark mode text color */
+}
+
+.dark-mode .favorites i {
+  color: white;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.dark-mode .favorites:hover {
+  transform: scale(1.05);
+}
+
+.dark-mode .favorites:hover i,
+.dark-mode .favorites:hover span {
+  color: #ff0000; /* Apply hover color in dark mode */
+}
+
+.dark-mode .navigation-wrapper {
+  background-color: #444; /* Dark grey background */
+}
+
+.dark-mode .navigation-wrapper a {
+  color: white; /* Make sure the text is visible */
+}
+
+.dark-mode .navigation-wrapper a:hover {
+  color: #3E73FF;
+}
+
+.dark-mode h1 {
+  color: white;
+}
+
+.dark-mode .product {
+  background-color: #222;
+  box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+  border: none; /* Remove border in dark mode */
+}
+
+.dark-mode .product-info h2,
+.dark-mode .product-info p {
+  color: white;
+}
+
+.dark-mode .like-icon {
+  color: white;
+}
+
+.search-container {
+  position: relative;
+  width: 73%;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px 10px 8px 30px; /* Add left padding to accommodate the icon */
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: black;
+  color: white;
+}
+
+.search-container .search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 18px;
+}
