@@ -12,7 +12,6 @@ body {
     justify-content: space-between;
     background-color: #EDEDED;
     padding: 10px 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .logo {
@@ -23,7 +22,6 @@ body {
     padding: 5px 15px;
     border-radius: 8px;
     margin-right: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .top-bar input {
@@ -44,12 +42,13 @@ body {
     margin-left: 15px;
     font-size: 20px;
     cursor: pointer;
-    transition: color 0.3s, transform 0.3s;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
 }
 
 .icons i:hover {
-    color: #3E73FF;
-    transform: scale(1.1);
+    color: #3E73FF; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
 }
 
 .favorites {
@@ -57,10 +56,11 @@ body {
     align-items: center;
     font-size: 14px;
     color: #333;
+    /*margin-right: 15px; /* Space between Favorites and Cart icon */
 }
 
 .favorites i {
-    margin-right: 5px;
+    margin-right: 5px; /* Space between icon and text */
     color: #111;
 }
 
@@ -69,28 +69,28 @@ body {
 }
 
 .favorites:hover {
-    color: #3E73FF;
-    transform: scale(1.05);
+    color: #3E73FF; /* Change the text color on hover */
+    transform: scale(1.05); /* Slight zoom effect */
     transition: all 0.3s ease;
 }
 
 .favorites:hover i, 
 .favorites:hover span {
-    color: hsl(0, 100%, 50%);
+    color: hsl(0, 100%, 50%); /* Apply hover color to both icon and text */
 }
 
 .navigation-wrapper {
     background-color: #f1f1f1;
     padding: 15px 0;
-    width: 100vw;
+    width: 100vw; /* Full viewport width */
     margin: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease;
 }
 
 .navigation {
     display: flex;
     justify-content: center;
+
 }
 
 .navigation a {
@@ -98,35 +98,210 @@ body {
     font-size: 18px;
     color: #333;
     text-decoration: none;
-    transition: color 0.3s ease;
+}
+
+/* Advertisement Banner Section */
+.advertisement-banner {
+    margin-top: 20px; /* Adjust this value for more/less space */
+    padding-top: 10px;
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Limit the maximum width of the banner */
+    margin: 0 auto; /* Center the banner horizontally */
+    padding: 0; /* Remove any extra padding */
+    display: flex;
+    justify-content: center; /* Horizontally center the images */
+    align-items: center; /* Vertically center the images */
+    overflow: hidden;
+    background-color: f4f4f4(0, 0%, 100%);
+    height: 250px; /* Adjust the height of the banner */
+}
+
+.dark-mode .advertisement-banner {
+    background-color: #111; /* or match your preferred dark theme color */
+}
+
+/* Banner image container with smooth sliding transition */
+.advertisement-banner .banner-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Individual brand logo styling */
+.advertisement-banner .brand-logo {
+    min-width: 100%; /* Ensure the images take up full width */
+    text-align: center;
+}
+
+/* Image adjustment to fit nicely inside the banner */
+.advertisement-banner img {
+    width: 75%; /* Slightly reduce size to fit inside */
+    height: 100%;
+    object-fit: contain; /* Ensure images don't get stretched */
+    border-radius: 45px; /* Adjust the value as needed */
+}
+
+/* Arrow Styles (Ensuring they're properly aligned and clickable) */
+.arrow-left, .arrow-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background for arrows */
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+/* Left and Right Arrow Placement */
+.arrow-left {
+    left: 120px; /* Position the left arrow at the left edge */
+}
+
+.arrow-right {
+    right: 120px; /* Position the right arrow at the right edge */
+}
+
+/* Hover Effect for Arrows */
+.arrow-left:hover, .arrow-right:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Darken on hover */
+}
+
+/* Dark Mode Arrow Adjustments */
+.dark-mode .arrow-left, .dark-mode .arrow-right {
+    background-color: rgba(0, 0, 0, 0.5); /* Keep dark background */
+}
+
+.dark-mode .arrow-left:hover, .dark-mode .arrow-right:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Darken on hover in dark mode */
 }
 
 .navigation a:hover {
     color: #3E73FF;
 }
 
-/* Dark Mode Styles */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    align-items: start;
+}
+
+h1 {
+    grid-column: 1 / -1;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.product {
+    background-color: #fff;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    max-width: 100%;
+    transition: all 0.3s ease; /* Add smooth transition for hover effect */
+}
+
+.product:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    transform: translateY(-5px); /* Lift the card slightly */
+}
+
+.product:hover .product-info h2 {
+    color: #3E73FF; /* Change product name color on hover */
+}
+
+.product:hover .product-info p {
+    color: #3E73FF; /* Change price color on hover */
+}
+
+.product img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+
+}
+
+.product-info h2 {
+    font-size: 14px;
+    margin: 0 0 auto 0; /* pushes price downward */
+    color: #111(0, 0%, 0%);
+    font-weight: 600;
+}
+
+.product-info p {
+    font-size: 25px; /* or larger if you want */
+    font-weight: bold;
+    color: #000000;
+    margin: 5px 0 0 0;
+}
+
+.like-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: black;
+    cursor: pointer;
+}
+
+.theme-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between the buttons */
+}
+
+.theme-buttons button {
+    font-size: 30px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #ddd;
+    transition: background-color 0.3s;
+}
+
+.theme-buttons button:hover {
+    background-color: #ccc;
+}
+
 .dark-mode {
     background-color: #111;
     color: white;
 }
 
 .dark-mode .top-bar {
-    background-color: #1e1e1e;
-    color: white;
-}
-
-.dark-mode .top-bar * {
-    color: white !important;
-}
-
-.dark-mode .logo {
-    background-color: #0040c1;
-    color: white;
+    background-color: #222;
 }
 
 .dark-mode .favorites {
-    color: white;
+    color: white; /* dark mode text color */
 }
 
 .dark-mode .favorites i {
@@ -140,15 +315,15 @@ body {
 
 .dark-mode .favorites:hover i,
 .dark-mode .favorites:hover span {
-    color: #ff0000;
+    color: #ff0000; /* Apply hover color in dark mode */
 }
 
 .dark-mode .navigation-wrapper {
-    background-color: #444;
+    background-color: #444; /* Dark grey background */
 }
 
 .dark-mode .navigation-wrapper a {
-    color: white;
+    color: white; /* Make sure the text is visible */
 }
 
 .dark-mode .navigation-wrapper a:hover {
@@ -159,17 +334,21 @@ body {
     color: white;
 }
 
-/* Add transitions */
-.top-bar,
-.logo,
-.navigation-wrapper,
-.navigation a,
-.icons i,
-.favorites {
-    transition: background-color 0.3s ease, color 0.3s ease;
+.dark-mode .product {
+    background-color: #222;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+    border: none; /* Remove border in dark mode */
 }
 
-/* Search Bar Styles */
+.dark-mode .product-info h2,
+.dark-mode .product-info p {
+    color: white;
+}
+
+.dark-mode .like-icon {
+    color: white;
+}
+
 .search-container {
     position: relative;
     width: 73%;
@@ -177,18 +356,11 @@ body {
 
 .search-container input {
     width: 100%;
-    padding: 8px 10px 8px 30px;
+    padding: 8px 10px 8px 30px; /* Add left padding to accommodate the icon */
     border-radius: 20px;
     border: 1px solid #ccc;
     background-color: black;
     color: white;
-}
-
-/* Dark Mode for Search Bar */
-.dark-mode .search-container input {
-    background-color: #2a2a2a;
-    color: white;
-    border: 1px solid #555;
 }
 
 .search-container .search-icon {
@@ -199,25 +371,3 @@ body {
     color: white;
     font-size: 18px;
 }
-
-
-/* Force navigation wrapper to change in dark mode */
-.dark-mode .navigation-wrapper {
-    background-color: #1e1e1e !important;
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
-    transition: background-color 0.3s ease, border 0.3s ease;
-}
-
-/* Change brand links color */
-.dark-mode .navigation a {
-    color: #dddddd !important;
-    transition: color 0.3s ease;
-}
-
-/* Hover effect for brand links in dark mode */
-.dark-mode .navigation a:hover {
-    color: #3E73FF !important;
-}
-
-/* ... (keep your other existing styles here, like product cards, etc.) */

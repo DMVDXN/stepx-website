@@ -1,4 +1,6 @@
 <?php
+session_start(); // ✅ Needed to use sessions
+
 $servername = "localhost";
 $username = "root";
 $password = "root"; // Default MAMP MySQL password
