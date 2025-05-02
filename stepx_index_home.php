@@ -1,3 +1,4 @@
+<!--stepx_index.home.php-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,15 +62,30 @@
 
 <div class="product-container">
     <h1>Recommended For You</h1>
-    <?php include 'stepx_products.php'; ?>
+    <?php
+    include 'stepx_db.php';
+    $sql = "SELECT * FROM products";
+    $result = $conn->query($sql);
+
+    while ($row = $result->fetch_assoc()) {
+        echo '
+        <a class="product" href="stepx_product_detail.html?id=' . $row['id'] . '">
+            <img src="' . $row['image_path'] . '" alt="' . htmlspecialchars($row['name']) . '">
+            <div class="product-info">
+                <h2>' . htmlspecialchars($row['name']) . '</h2>
+                <p>$' . htmlspecialchars($row['price']) . '</p>
+            </div>
+        </a>';
+    }
+    ?>
 </div>
 
 <div class="theme-buttons">
     <button onclick="setDarkMode()">
-        <i class="fa fa-moon"></i> <!-- Moon Icon -->
+        <i class="fa fa-moon"></i>
     </button>
     <button onclick="setLightMode()">
-        <i class="fa fa-sun"></i> <!-- Sun Icon -->
+        <i class="fa fa-sun"></i>
     </button>
 </div>
 
@@ -86,14 +102,10 @@
             currentSlide = 0;
         }
 
-        // Hide all slides
         slides.forEach(slide => slide.style.display = 'none');
-        
-        // Show current slide
         slides[currentSlide].style.display = 'block';
     }
 
-    // Initial display setup
     changeSlide(0);
 
     function setDarkMode() {

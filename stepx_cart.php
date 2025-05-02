@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = new mysqli("localhost", "root", "root", "stepx_db");
+    $conn = new mysqli("localhost", "root", "root", "stepx_db");
 
 $cart_items = $_SESSION['cart'] ?? [];
 $products = [];

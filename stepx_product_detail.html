@@ -84,6 +84,30 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('id');
 
+document.querySelector('.add-to-cart-btn').addEventListener('click', function () {
+  fetch('stepx_product_detail.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      product_id: productId,
+      quantity: 1
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert('Added to cart!');
+    } else {
+      alert(data.message || 'Failed to add to cart.');
+    }
+  })
+  .catch(err => {
+    console.error('Add to cart error:', err);
+    alert('Something went wrong.');
+  });
+});
+
+
 // Base URL for images
 let baseImageUrl;
 if (window.location.port === "8888") {
@@ -175,6 +199,8 @@ document.querySelector('.favorite-btn').addEventListener('click', function() {
       document.body.classList.remove('dark-mode');
   }
 </script>
+
+
 
 </body>
 </html>
