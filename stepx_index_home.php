@@ -69,8 +69,8 @@
 
     while ($row = $result->fetch_assoc()) {
         echo '
-        <a class="product" href="stepx_product_detail.html?id=' . $row['id'] . '">
-            <img src="' . $row['image_path'] . '" alt="' . htmlspecialchars($row['name']) . '">
+            <a class="product" href="stepx_product_detail.html?id=' . $row['id'] . '">
+                <img src="' . $row['image_path'] . '" alt="' . htmlspecialchars($row['name']) . '">
             <div class="product-info">
                 <h2>' . htmlspecialchars($row['name']) . '</h2>
                 <p>$' . htmlspecialchars($row['price']) . '</p>
@@ -115,6 +115,16 @@
     function setLightMode() {
         document.body.classList.remove('dark-mode');
     }
+
+    // Heart toggle
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.like-icon').forEach(function (heart) {
+            heart.addEventListener('click', function () {
+                this.classList.toggle('liked');
+                // Optional: AJAX to save favorite to database
+            });
+        });
+    });
 </script>
 
 </body>
