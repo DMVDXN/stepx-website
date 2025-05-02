@@ -1,5 +1,4 @@
 <?php
-session_start(); // ✅ Needed to use sessions
 
 $servername = "localhost";
 $username = "root";

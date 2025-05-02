@@ -22,7 +22,9 @@
         </div>
         <i class="fa fa-shopping-cart"></i>
         <i class="fa fa-bell"></i>
-        <i class="fa fa-user"></i>
+        <a href="stepx_profile.php">
+            <i class="fa fa-user"></i>
+        </a>    
     </div>
 </header>
 

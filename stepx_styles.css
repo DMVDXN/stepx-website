@@ -371,3 +371,20 @@ h1 {
     color: white;
     font-size: 18px;
 }
+
+/* Prevent the profile icon from turning purple */
+.icons a:visited,
+.icons a:visited i {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+
+.icons a i {
+    color: black;
+  }
+  
+  .icons a:visited i {
+    color: black;
+  }
+  
