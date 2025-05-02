@@ -1,3 +1,4 @@
+<!--stepx_cart.php-->
 <?php
 session_start();
     $conn = new mysqli("localhost", "root", "root", "stepx_db");

@@ -1,3 +1,4 @@
+<!--stepx_db-->
 <?php
 $servername = "localhost";
 $username = "root";

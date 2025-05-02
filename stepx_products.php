@@ -1,3 +1,4 @@
+<!--stepx_products.php-->
 <?php
 include 'stepx_db.php';
 
