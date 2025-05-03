@@ -26,15 +26,20 @@ $email = $_SESSION['email'] ?? 'john@example.com';
 
     <div class="icons">
     <a href="stepx_favorites.php" class="favorites">
-    <i class="fa fa-heart"></i>
-    <span>Favorites</span>
-</a>
+        <i class="fa fa-heart"></i>
+        <span>Favorites</span>
+    </a>
+
+    <a href="stepx_cart.php">
         <i class="fa fa-shopping-cart"></i>
-        <i class="fa fa-bell"></i>
-        <a href="stepx_profile.php">
-            <i class="fa fa-user"></i>
-        </a>    
-    </div>
+    </a>
+
+    <i class="fa fa-bell"></i>
+
+    <a href="stepx_profile.php">
+        <i class="fa fa-user"></i>
+    </a>    
+</div>
 </header>
 
     <div class="navigation-wrapper">

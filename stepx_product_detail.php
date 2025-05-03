@@ -85,22 +85,28 @@ if ($check_fav->num_rows > 0) {
 <body>
 
 <header class="top-bar">
-  <a href="stepx_index_home.php" class="logo">StepX</a>
+    <a href="stepx_index_home.php" class="logo">StepX</a>
+    <div class="search-container">
+        <i class="fa fa-search search-icon"></i>
+        <input type="text" placeholder="Search for brand, color, etc">
+    </div>
 
-  <div class="search-container">
-    <i class="fa fa-search search-icon"></i>
-    <input type="text" placeholder="Search for brand, color, etc" />
-  </div>
+    <div class="icons">
+    <a href="stepx_favorites.php" class="favorites">
+        <i class="fa fa-heart"></i>
+        <span>Favorites</span>
+    </a>
 
-  <div class="icons">
-  <a href="stepx_favorites.php" class="favorites">
-    <i class="fa fa-heart"></i>
-    <span>Favorites</span>
-</a>
-    <i class="fa fa-shopping-cart"></i>
+    <a href="stepx_cart.php">
+        <i class="fa fa-shopping-cart"></i>
+    </a>
+
     <i class="fa fa-bell"></i>
-    <i class="fa fa-user"></i>
-  </div>
+
+    <a href="stepx_profile.php">
+        <i class="fa fa-user"></i>
+    </a>    
+</div>
 </header>
 
 <div class="navigation-wrapper">

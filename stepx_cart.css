@@ -1,28 +1,477 @@
 /*stepx_cart.css*/
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    padding: 40px;
-}
-
-h1 {
-    text-align: center;
-}
-
-ul {
-    list-style: none;
+    background-color: hsl(0, 0%, 96%);
+    margin: 0;
     padding: 0;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-li {
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .top-bar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    background-color: #EDEDED;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    background-color: #3E73FF;
+    padding: 5px 15px;
+    border-radius: 8px;
+    margin-right: 20px;
+    text-decoration: none; /* ✅ remove underline */
+  display: inline-block;  /* ensures padding and background apply correctly */
+  }
+  
+  
+  
+  .top-bar input {
+    width: 1000px;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+  }
+  
+  .icons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .icons i {
+    margin-left: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  .icons i:hover {
+    color: #3E73FF; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+  }
+  
+  .favorites {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .favorites i {
+    margin-right: 5px;
+  }
+  
+  .favorites span {
+    margin-left: 5px;
+  }
+  
+  /* Prevent underline and purple visited color */
+  .favorites:visited,
+  .favorites:visited span,
+  .favorites:visited i {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .favorites:hover {
+    color: #3E73FF; /* Change the text color on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+    transition: all 0.3s ease;
+  }
+  
+  .favorites:hover i, 
+  .favorites:hover span {
+    color: hsl(0, 100%, 50%); /* Apply hover color to both icon and text */
+  }
+  
+  .navigation-wrapper {
+    background-color: #f1f1f1;
+    padding: 15px 0;
+    width: 100vw; /* Full viewport width */
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .navigation {
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  .navigation a {
+    margin: 0 15px;
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .navigation a:hover {
+    color: #3E73FF;
+  }
+
+
+
+.cart-main {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.cart-left {
+    flex: 2;
+}
+
+.cart-right {
+    flex: 1;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.cart-left h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* --- Cart Items --- */
+.cart-item {
+    display: flex;
+    align-items: flex-start;
     gap: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     background-color: #fff;
     padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.cart-item img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
     border-radius: 10px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    border: 1px solid #ccc;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details h2 {
+    font-size: 18px;
+    margin: 0 0 5px;
+    font-weight: bold;
+}
+
+.item-details p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.item-details .price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* --- Quantity Buttons --- */
+.qty-controls {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-controls button {
+    padding: 5px 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.qty-controls span.qty {
+    font-size: 14px;
+}
+
+/* --- Remove Button --- */
+.remove-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    color: red;
+}
+
+/* --- Summary --- */
+.cart-right h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.summary-line.total {
+    font-weight: bold;
+    border-top: 2px solid #ccc;
+    padding-top: 10px;
+    margin-top: 15px;
+}
+
+.checkout-btn {
+    margin-top: 20px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.checkout-btn:hover {
+    background-color: #333;
+}
+
+/* --- Promo Code Box --- */
+.promo-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.promo-form input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+}
+
+.promo-form button {
+    padding: 8px 14px;
+    background-color: #0056e0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.promo-form button:hover {
+    background-color: #0041b3;
+}
+
+/* --- Dark Mode --- */
+.dark-mode .cart-right {
+    background-color: #222;
+    color: white;
+}
+
+.dark-mode .cart-item {
+    background-color: #1c1c1c;
+    color: white;
+}
+
+.dark-mode .item-details p {
+    color: #bbb;
+}
+
+.dark-mode .promo-form input {
+    background-color: #111;
+    color: white;
+    border: 1px solid #555;
+}
+
+.dark-mode .summary-line {
+    color: white;
+}
+
+.dark-mode .checkout-btn {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode .checkout-btn:hover {
+    background-color: #ccc;
+}
+
+
+
+.like-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: black;
+    cursor: pointer;
+}
+
+.theme-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Space between the buttons */
+}
+
+.theme-buttons button {
+    font-size: 30px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #ddd;
+    transition: background-color 0.3s;
+}
+
+.theme-buttons button:hover {
+    background-color: #ccc;
+}
+
+.dark-mode {
+    background-color: #111;
+    color: white;
+}
+
+.dark-mode .top-bar {
+    background-color: #222;
+}
+
+.dark-mode .favorites {
+    color: white; /* dark mode text color */
+}
+
+.dark-mode .favorites i {
+    color: white;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.dark-mode .favorites:hover {
+    transform: scale(1.05);
+}
+
+.dark-mode .favorites:hover i,
+.dark-mode .favorites:hover span {
+    color: #ff0000; /* Apply hover color in dark mode */
+}
+
+.dark-mode .navigation-wrapper {
+    background-color: #444; /* Dark grey background */
+}
+
+.dark-mode .navigation-wrapper a {
+    color: white; /* Make sure the text is visible */
+}
+
+.dark-mode .navigation-wrapper a:hover {
+    color: #3E73FF;
+}
+
+.dark-mode h1 {
+    color: white;
+}
+
+.dark-mode .product {
+    background-color: #222;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+    border: none; /* Remove border in dark mode */
+}
+
+.dark-mode .product-info h2,
+.dark-mode .product-info p {
+    color: white;
+}
+
+.dark-mode .like-icon {
+    color: white;
+}
+
+.search-container {
+    position: relative;
+    width: 73%;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 8px 10px 8px 30px; /* Add left padding to accommodate the icon */
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: black;
+    color: white;
+}
+
+.search-container .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 18px;
+}
+
+.dark-mode .search-container input {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.dark-mode .search-icon {
+    color: black;
+}
+
+
+a.logo,
+a.logo:visited,
+a.logo:hover,
+a.logo:active {
+    text-decoration: none !important;
+    color: black !important;
+    background-color: #3E73FF;
+    padding: 5px 15px;
+    border-radius: 8px;
+    font-size: 28px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+
+/* Force white text for product name and price in dark mode */
+.dark-mode #product-title,
+.dark-mode #product-price {
+  color: white !important;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: none;
 }
