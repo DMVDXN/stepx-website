@@ -83,18 +83,25 @@ if ($user_id) {
             ?>
                 <div class="cart-item">
                     <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
-                    <div class="item-details">
-                        <h2><?= htmlspecialchars($item['name']) ?></h2>
-                        <p>Unisex</p>
-                        <p>Size: <?= htmlspecialchars($item['size']) ?> | Standard</p>
-                        <p class="price">$<?= number_format($total_price, 2) ?></p>
+                    <div class="item-info">
+    <div class="item-details">
+        <h2><?= htmlspecialchars($item['name']) ?></h2>
+        <p>Unisex</p>
+        <p>Size: <?= htmlspecialchars($item['size']) ?> | Standard</p>
 
-                        <div class="qty-controls">
-                            <button class="decrease">–</button>
-                            <span class="qty">QTY <?= $item['quantity'] ?></span>
-                            <button class="increase">+</button>
-                        </div>
-                    </div>
+        <div class="qty-controls">
+            <button class="decrease" data-cart-id="<?= $item['cart_id'] ?>">–</button>
+            <span class="qty" data-cart-id="<?= $item['cart_id'] ?>">QTY <?= $item['quantity'] ?></span>
+            <button class="increase" data-cart-id="<?= $item['cart_id'] ?>">+</button>
+        </div>
+    </div>
+
+    <div class="item-price">
+        <p class="price" data-cart-id="<?= $item['cart_id'] ?>" data-unit-price="<?= $item['price'] ?>">
+            $<?= number_format($item['price'] * $item['quantity'], 2) ?>
+        </p>
+    </div>
+</div>
                     <form method="POST" action="remove_from_cart.php">
                         <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
                         <button class="remove-btn"><i class="fa fa-times"></i></button>
@@ -113,7 +120,10 @@ if ($user_id) {
     <input type="text" id="promo" name="promo_code" placeholder="Enter code" value="<?= htmlspecialchars($_POST['promo_code'] ?? '') ?>">
     <button type="submit">Apply</button>
 </form>
-        <div class="summary-line"><span>Sub Total</span><span>$<?= number_format($subtotal, 2) ?></span></div>
+<div class="summary-line">
+  <span>Sub Total</span>
+  <span id="subtotal-amount">$<?= number_format($subtotal, 2) ?></span>
+</div>
         <div class="summary-line"><span>Shipping: Standard</span><span>FREE</span></div>
         <div class="summary-line"><span>Sales tax</span><span>$9.00</span></div>
         <div class="summary-line"><span>Promo Discount</span><span>–$<?= number_format($promo_discount, 2) ?></span></div>
@@ -124,6 +134,7 @@ if ($user_id) {
         <button class="checkout-btn">Checkout</button>
     </section>
 </main>
+
 
 <div class="theme-buttons">
     <button onclick="setDarkMode()">
@@ -161,6 +172,44 @@ if ($user_id) {
         document.body.classList.remove('dark-mode');
     }
 </script>
+
+<script>
+document.querySelectorAll('.increase, .decrease').forEach(button => {
+    button.addEventListener('click', function () {
+        const cartId = this.getAttribute('data-cart-id');
+        const isIncrease = this.classList.contains('increase');
+        const qtySpan = document.querySelector(`.qty[data-cart-id="${cartId}"]`);
+        const priceEl = document.querySelector(`.price[data-cart-id="${cartId}"]`);
+        const unitPrice = parseFloat(priceEl.dataset.unitPrice);
+
+        fetch('update_quantity.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `cart_id=${cartId}&action=${isIncrease ? 'increase' : 'decrease'}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                let currentQty = parseInt(qtySpan.textContent.replace('QTY', '').trim());
+                currentQty = isIncrease ? currentQty + 1 : Math.max(1, currentQty - 1);
+                qtySpan.textContent = `QTY ${currentQty}`;
+                priceEl.textContent = `$${(unitPrice * currentQty).toFixed(2)}`;
+
+                // Recalculate subtotal
+                let newSubtotal = 0;
+                document.querySelectorAll('.price[data-unit-price]').forEach(el => {
+                    newSubtotal += parseFloat(el.textContent.replace('$', ''));
+                });
+                document.getElementById('subtotal-amount').textContent = `$${newSubtotal.toFixed(2)}`;
+            } else {
+                alert("Failed to update quantity.");
+            }
+        });
+    });
+});
+</script>
+
+
 
 </body>
 </html>

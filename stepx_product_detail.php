@@ -151,6 +151,7 @@ if ($check_fav->num_rows > 0) {
 <form id="add-to-cart-form">
   <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
   <input type="hidden" name="quantity" value="1" />
+  <input type="hidden" name="size" id="selected-size" required>
   <button type="submit" class="add-to-cart-btn">Add to Cart</button>
 </form>
 
@@ -171,15 +172,6 @@ if ($check_fav->num_rows > 0) {
   </button>
 </div>
 
-<script>
-document.addEventListener('click', function(e) {
-  if (e.target.classList.contains('size-option')) {
-    document.querySelectorAll('.size-option').forEach(btn => btn.classList.remove('selected'));
-    e.target.classList.add('selected');
-  }
-});
-
-</script>
 
 
 <script>
@@ -189,7 +181,7 @@ document.getElementById('add-to-cart-form').addEventListener('submit', function 
   const form = e.target;
   const formData = new FormData(form);
 
-  fetch(window.location.href, {
+  fetch('stepx_cart_add.php', {
     method: 'POST',
     body: formData
   })
@@ -258,6 +250,22 @@ document.querySelector('.favorite-btn').addEventListener('click', function (e) {
     });
 });
 </script>
+
+<script>
+  document.querySelectorAll('.size-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Unselect all
+      document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+      
+      // Select this one
+      btn.classList.add('selected');
+
+      // Set hidden input
+      document.getElementById('selected-size').value = btn.textContent.trim();
+    });
+  });
+</script>
+
 
 <script>
 function setDarkMode() {
