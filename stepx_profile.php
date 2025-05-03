@@ -17,22 +17,25 @@ $email = $_SESSION['email'] ?? 'john@example.com';
 </head>
 <body>
 
-    <header class="top-bar">
-        <div class="logo">StepX</div>
-        <div class="search-container">
-            <i class="fa fa-search search-icon"></i>
-            <input type="text" placeholder="Search for brand, color, etc">
-        </div>
-        <div class="icons">
-            <div class="favorites">
-                <i class="fa fa-heart"></i>
-                <span>Favorites</span>
-            </div>
-            <i class="fa fa-shopping-cart"></i>
-            <i class="fa fa-bell"></i>
+<header class="top-bar">
+    <a href="stepx_index_home.php" class="logo">StepX</a>
+    <div class="search-container">
+        <i class="fa fa-search search-icon"></i>
+        <input type="text" placeholder="Search for brand, color, etc">
+    </div>
+
+    <div class="icons">
+    <a href="stepx_favorites.php" class="favorites">
+    <i class="fa fa-heart"></i>
+    <span>Favorites</span>
+</a>
+        <i class="fa fa-shopping-cart"></i>
+        <i class="fa fa-bell"></i>
+        <a href="stepx_profile.php">
             <i class="fa fa-user"></i>
-        </div>
-    </header>
+        </a>    
+    </div>
+</header>
 
     <div class="navigation-wrapper">
         <div class="navigation">

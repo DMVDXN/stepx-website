@@ -15,15 +15,20 @@ body {
     padding: 10px 20px;
 }
 
-.logo {
+a.logo,
+a.logo:visited,
+a.logo:hover,
+a.logo:active {
     font-size: 28px;
     font-weight: bold;
-    color: black;
+    color: black !important;
     background-color: #3E73FF;
     padding: 5px 15px;
     border-radius: 8px;
-    margin-right: 20px;
+    display: inline-block;
+    text-decoration: none !important;
 }
+
 
 .top-bar input {
     width: 1000px;
@@ -120,7 +125,7 @@ body {
 .edit-profile-container h1 {
     font-size: 24px;
     font-weight: bold;
-    border-bottom: 2px solid black;
+    border-bottom: none !important;
     padding-bottom: 4px;
     margin-bottom: 25px;
     display: inline-block;
@@ -266,6 +271,16 @@ form input {
     font-size: 18px;
 }
 
+.dark-mode .search-container input {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.dark-mode .search-icon {
+    color: black;
+}
+
 .profile-header {
     display: flex;
     align-items: center;
@@ -288,7 +303,31 @@ form input {
  body.dark-mode .heading-wrapper h1 {
     color: white !important;
     border-bottom: 2px solid white !important;
-  }
-  
-  
-  
+}
+
+
+.dark-mode h1,
+.dark-mode h2 {
+    color: black !important;
+}
+
+h1, .edit-profile-container h1, .heading-wrapper h1 {
+    border-bottom: none !important;
+    text-decoration: none !important;
+}
+
+.favorites {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.favorites:visited,
+.favorites:active,
+.favorites:hover,
+.favorites span,
+.favorites span:visited,
+.favorites span:hover,
+.favorites span:active {
+    text-decoration: none !important;
+    color: inherit !important;
+}

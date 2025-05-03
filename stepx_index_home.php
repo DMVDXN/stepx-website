@@ -10,17 +10,17 @@
 <body>
 
 <header class="top-bar">
-    <div class="logo">StepX</div>
+    <a href="stepx_index_home.php" class="logo">StepX</a>
     <div class="search-container">
         <i class="fa fa-search search-icon"></i>
         <input type="text" placeholder="Search for brand, color, etc">
     </div>
 
     <div class="icons">
-        <div class="favorites">
-            <i class="fa fa-heart"></i>
-            <span>Favorites</span>
-        </div>
+    <a href="stepx_favorites.php" class="favorites">
+    <i class="fa fa-heart"></i>
+    <span>Favorites</span>
+</a>
         <i class="fa fa-shopping-cart"></i>
         <i class="fa fa-bell"></i>
         <a href="stepx_profile.php">
@@ -67,16 +67,16 @@
     $sql = "SELECT * FROM products";
     $result = $conn->query($sql);
 
-    while ($row = $result->fetch_assoc()) {
-        echo '
-            <a class="product" href="stepx_product_detail.html?id=' . $row['id'] . '">
-                <img src="' . $row['image_path'] . '" alt="' . htmlspecialchars($row['name']) . '">
+    while ($row = $result->fetch_assoc()): ?>
+        <a href="stepx_product_detail.php?id=<?php echo $row['id']; ?>" class="product">
+            <img src="<?php echo $row['image_path']; ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
             <div class="product-info">
-                <h2>' . htmlspecialchars($row['name']) . '</h2>
-                <p>$' . htmlspecialchars($row['price']) . '</p>
+                <h2><?php echo htmlspecialchars($row['name']); ?></h2>
+                <p>$<?php echo htmlspecialchars($row['price']); ?></p>
             </div>
-        </a>';
-    }
+        </a>
+    <?php endwhile;
+
     ?>
 </div>
 
@@ -115,16 +115,6 @@
     function setLightMode() {
         document.body.classList.remove('dark-mode');
     }
-
-    // Heart toggle
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll('.like-icon').forEach(function (heart) {
-            heart.addEventListener('click', function () {
-                this.classList.toggle('liked');
-                // Optional: AJAX to save favorite to database
-            });
-        });
-    });
 </script>
 
 </body>
