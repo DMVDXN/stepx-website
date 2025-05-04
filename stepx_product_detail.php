@@ -112,9 +112,16 @@ if ($check_fav->num_rows > 0) {
 
     <i class="fa fa-bell"></i>
 
-    <a href="stepx_profile.php">
-        <i class="fa fa-user"></i>
-    </a>    
+    <div class="profile-hover">
+  <a href="stepx_profile.php">
+    <i class="fa fa-user"></i>
+  </a>
+  <?php if (isset($_SESSION['first_name'])): ?>
+    <div class="welcome-tooltip">
+      Welcome, <?= htmlspecialchars($_SESSION['first_name']) ?>!
+    </div>
+  <?php endif; ?>
+</div>    
 </div>
 </header>
 

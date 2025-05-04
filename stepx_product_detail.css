@@ -665,3 +665,37 @@ body.dark-mode .review-date {
   color: #bbb;
 }
 
+
+
+.profile-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.welcome-tooltip {
+  display: none;
+  position: absolute;
+  top: 35px; /* may adjust based on header height */
+  right: -10px;
+  background-color: #fff;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  z-index: 999;
+}
+
+.profile-hover:hover .welcome-tooltip {
+  display: block;
+}
+
+/* Optional: dark mode support */
+body.dark-mode .welcome-tooltip {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  border-color: #444;
+}
