@@ -157,3 +157,43 @@ input {
   border-bottom: 2px solid black; /* this adds the black line */
   margin-bottom: 2rem; /* this adds space below the white header */
 }
+
+
+
+.like-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: black;
+  cursor: pointer;
+}
+
+.theme-buttons {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px; /* Space between the buttons */
+}
+
+.theme-buttons button {
+  font-size: 30px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #ddd;
+  transition: background-color 0.3s;
+}
+
+.theme-buttons button:hover {
+  background-color: #ccc;
+}
+
+.dark-mode {
+  background-color: #111;
+  color: white;
+}
+
+

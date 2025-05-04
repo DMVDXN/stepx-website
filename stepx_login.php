@@ -46,3 +46,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
+
+<!--stepx_login.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StepX - Login</title>
+  <link rel="stylesheet" href="Loginstyles.css" />
+</head>
+<body>
+  <div class="logo-box">
+    <div class="logo">StepX</div>
+  </div>
+
+  <div class="form-box">
+    <div class="tabs">
+      <a href="stepx_signup.html" class="tab">Sign up</a>
+      <a href="#" class="tab active">Log in</a>
+    </div>
+
+    <form action="stepx_login.php" method="POST" class="form">
+      <h2>Log In</h2>
+
+      <label for="email">Email Address</label>
+      <input type="text" id="email" name="email" placeholder="Email Address*" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Password*" required>
+
+      <div class="error-message">
+        <?php if (isset($_GET['error'])) echo htmlspecialchars($_GET['error']); ?>
+      </div>
+
+      <button type="submit" class="btn">Log In</button>
+    </form>
+  </div>
+
+  <div class="theme-buttons">
+    <button onclick="setDarkMode()">
+        <i class="fa fa-moon"></i>
+    </button>
+    <button onclick="setLightMode()">
+        <i class="fa fa-sun"></i>
+    </button>
+</div>
+
+<script>
+    // Apply dark mode on page load if it was previously selected
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+    
+
+    function setDarkMode() {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+    }
+
+    function setLightMode() {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+    }
+</script>
+</body>
+</html>

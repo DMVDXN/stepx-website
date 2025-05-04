@@ -1,6 +1,12 @@
 <!--stepx_index.home.php-->
 <?php
 session_start();
+
+// Redirect to login if user not signed in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: stepx_login.php"); // or stepx_login.php if that’s your login form
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
