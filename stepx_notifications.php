@@ -90,15 +90,16 @@ $reviews = $stmt->get_result();
     <?php if ($reviews->num_rows > 0): ?>
         <div class="user-reviews">
         <?php while ($row = $reviews->fetch_assoc()): ?>
-            <div class="review-item">
-                <strong><?= htmlspecialchars($row['product_name']) ?></strong>
-                <div class="stars">
-                    <?php for ($i = 1; $i <= 5; $i++): ?>
-                        <i class="fa<?= $i <= $row['rating'] ? 's' : 'r' ?> fa-star"></i>
-                    <?php endfor; ?>
-                </div>
-                <p><?= htmlspecialchars($row['comment']) ?></p>
-            </div>
+            <a class="review-item" href="stepx_product_detail.php?id=<?= $row['product_id'] ?>">
+  <strong><?= htmlspecialchars($row['product_name']) ?></strong>
+  <div class="stars">
+    <?php for ($i = 1; $i <= 5; $i++): ?>
+      <i class="fa<?= $i <= $row['rating'] ? 's' : 'r' ?> fa-star"></i>
+    <?php endfor; ?>
+  </div>
+  <p><?= htmlspecialchars($row['comment']) ?></p>
+</a>
+
             <form method="POST" action="delete_review_notifications.php" onsubmit="return confirm('Delete this review?');">
     <input type="hidden" name="review_id" value="<?= $row['id'] ?>">
     <button type="submit" class="delete-btn">Delete</button>

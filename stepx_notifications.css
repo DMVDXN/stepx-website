@@ -325,8 +325,26 @@ a:active {
   
   .review-item {
     margin-top: 1rem;
-    padding: 1.2rem 0;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
     border-top: 1px solid black;
+    border-bottom: 15px solid black;
+    margin-bottom: 1rem;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px; /* ✅ rounded corners */
+  }
+  
+  .review-item:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* ✅ soft hover shadow */
+    border-radius: 12px; /* keep corners rounded on hover */
+  }
+  
+  body.dark-mode .review-item:hover {
+    background-color: #2c2c2c;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
   }
  
   .review-item strong {
@@ -380,7 +398,6 @@ a:active {
   
   body.dark-mode .review-item {
     border-color: #333;
-
   }
   
   body.dark-mode .review-item strong {
