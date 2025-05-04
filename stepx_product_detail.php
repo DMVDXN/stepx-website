@@ -63,6 +63,15 @@ if (!$result || $result->num_rows === 0) {
 
 $product = $result->fetch_assoc();
 
+// Check if the user has already left a review for this product
+$existing_review = null;
+if (isset($_SESSION['user_id'])) {
+    $check_review = $conn->query("SELECT * FROM reviews WHERE user_id = $user_id AND product_id = $product_id");
+    if ($check_review && $check_review->num_rows > 0) {
+        $existing_review = $check_review->fetch_assoc();
+    }
+}
+
 // Check if this product is already favorited by the user
 $is_favorited = false;
 $check_fav = $conn->prepare("SELECT 1 FROM favorites WHERE user_id = ? AND product_id = ?");
@@ -162,6 +171,79 @@ if ($check_fav->num_rows > 0) {
 
   </div>
 </div>
+
+
+
+<!-- Review Section -->
+<div class="review-section">
+  <h2>Leave a Review</h2>
+  <?php if (isset($_SESSION['user_id'])): ?>
+    <form action="submit_review.php" method="POST" class="review-form">
+        <input type="hidden" name="product_id" value="<?= $product_id ?>">
+
+        <label for="rating">Your Rating:</label>
+        <div class="star-rating">
+            <?php for ($i = 5; $i >= 1; $i--): ?>
+                <input type="radio" name="rating" id="star<?= $i ?>" value="<?= $i ?>"
+                       <?= isset($existing_review) && $existing_review['rating'] == $i ? 'checked' : '' ?> required>
+                <label for="star<?= $i ?>">&#9733;</label>
+            <?php endfor; ?>
+        </div>
+
+        <label for="comment">Your Review:</label>
+        <textarea name="comment" rows="4" required><?= $existing_review['comment'] ?? '' ?></textarea>
+        <br>
+        <button type="submit"><?= $existing_review ? 'Update Review' : 'Submit Review' ?></button>
+
+        <?php if ($existing_review): ?>
+            <a href="delete_review.php?product_id=<?= $product_id ?>"
+               onclick="return confirm('Are you sure you want to delete your review?');"
+               class="delete-review-btn">Delete Review</a>
+        <?php endif; ?>
+    </form>
+  <?php else: ?>
+    <p><a href="StepX_login.php">Log in</a> to leave a review.</p>
+  <?php endif; ?>
+</div>
+
+<div class="review-list">
+  <h3 class="review-subtitle">Customer Reviews</h3>
+
+  <?php
+  $sql_reviews = "SELECT r.rating, r.comment, r.created_at, u.first_name
+                  FROM reviews r
+                  JOIN users u ON r.user_id = u.id
+                  WHERE r.product_id = $product_id
+                  ORDER BY r.created_at DESC";
+  $result_reviews = $conn->query($sql_reviews);
+
+  if ($result_reviews->num_rows > 0):
+      while ($row = $result_reviews->fetch_assoc()):
+  ?>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-user"><?= htmlspecialchars($row['first_name']) ?></div>
+        <div class="review-stars">
+          <?php for ($i = 1; $i <= 5; $i++): ?>
+            <span class="star<?= $i <= $row['rating'] ? ' filled' : '' ?>">&#9733;</span>
+          <?php endfor; ?>
+        </div>
+      </div>
+      <div class="review-body">
+        <p class="review-comment"><?= htmlspecialchars($row['comment']) ?></p>
+        <span class="review-date"><?= date("F j, Y", strtotime($row['created_at'])) ?></span>
+      </div>
+    </div>
+  <?php endwhile; else: ?>
+    <p class="no-reviews">No reviews yet. Be the first to leave one!</p>
+  <?php endif; ?>
+</div>
+
+
+
+
+
+
 
 <div class="theme-buttons">
   <button onclick="setDarkMode()">

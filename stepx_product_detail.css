@@ -463,3 +463,205 @@ a:active {
   color: inherit;
   text-decoration: none;
 }
+
+
+
+
+
+.review-section {
+  max-width: 700px;
+  margin: 3rem auto 2rem auto;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.review-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #222;
+  text-align: center;
+}
+
+.review-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin: 0.5rem 0;
+}
+
+.review-form .review-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-form button {
+  background-color: #0056e0;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.review-form button:hover {
+  background-color: #0042b5;
+}
+
+.delete-review-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.delete-review-btn:hover {
+  background-color: #c0392b;
+}
+
+.star-rating {
+  direction: rtl;
+  display: flex;
+  gap: 5px;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: gold;
+}
+
+.review-list {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.review-card {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.review-user {
+  font-weight: bold;
+}
+
+.review-stars {
+  display: flex;
+}
+
+.review-stars .star {
+  color: #ccc;
+  font-size: 1.2rem;
+  margin-left: 2px;
+}
+
+.review-stars .star.filled {
+  color: gold;
+}
+
+.review-body {
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+.review-comment {
+  margin-bottom: 0.4rem;
+}
+
+.review-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+
+/* 🌙 Dark Mode for Review Section */
+body.dark-mode .review-section {
+  background-color: #1e1e1e;
+  border-color: #333;
+  box-shadow: none;
+}
+
+body.dark-mode .review-title,
+body.dark-mode .review-subtitle,
+body.dark-mode .review-header,
+body.dark-mode .review-user {
+  color: #f1f1f1;
+}
+
+body.dark-mode .review-form textarea {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.dark-mode .review-form button {
+  background-color: #187bff;
+}
+
+body.dark-mode .review-form button:hover {
+  background-color: #0f65d2;
+}
+
+body.dark-mode .delete-review-btn {
+  background-color: #c0392b;
+}
+
+body.dark-mode .delete-review-btn:hover {
+  background-color: #a3281f;
+}
+
+body.dark-mode .star-rating label,
+body.dark-mode .review-stars .star {
+  color: #666;
+}
+
+body.dark-mode .star-rating input:checked ~ label,
+body.dark-mode .star-rating label:hover,
+body.dark-mode .star-rating label:hover ~ label,
+body.dark-mode .review-stars .star.filled {
+  color: gold;
+}
+
+body.dark-mode .review-card {
+  background-color: #2a2a2a;
+  border-color: #444;
+  color: #ddd;
+}
+
+body.dark-mode .review-text,
+body.dark-mode .review-comment,
+body.dark-mode .review-date {
+  color: #bbb;
+}
+
