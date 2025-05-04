@@ -1,5 +1,5 @@
 /*Loginstyles.css*/
-/*styles file for both stepx_signup.html and stepx_login.html*/
+/*styles file for both stepx_signup.php and stepx_login.php*/
 /* Base Reset */
 * {
   box-sizing: border-box;
@@ -128,46 +128,6 @@ input {
 }
 
 /* Theme Toggle (Optional) */
-.theme-toggle {
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.theme-toggle button {
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.logo-box {
-  width: 100%;
-  background-color: white;
-  padding: 1.5rem 0;
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border-bottom: 2px solid black; /* this adds the black line */
-  margin-bottom: 2rem; /* this adds space below the white header */
-}
-
-
-
-.like-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: black;
-  cursor: pointer;
-}
-
 .theme-buttons {
   position: fixed;
   bottom: 20px;
@@ -196,4 +156,35 @@ input {
   color: white;
 }
 
+.logo-box {
+  width: 100%;
+  background-color: white;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid black; /* this adds the black line */
+  margin-bottom: 2rem; /* this adds space below the white header */
+}
 
+
+.dark-mode .form-box h2 {
+  color: black;
+}
+
+.dark-mode .logo-box {
+  background-color: #222;
+  border-bottom: 2px solid white;
+}
+
+
+.error-message {
+  background-color: #ffe0e0;
+  color: #b30000;
+  border: 1px solid #b30000;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+}

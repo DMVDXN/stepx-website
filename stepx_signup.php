@@ -1,8 +1,6 @@
 <!--stepx_signup.php-->
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 session_start(); // Start session to store user info
 
 
@@ -30,30 +28,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssss", $first_name, $last_name, $email, $password);
 
-    if ($stmt->execute()) {
-        // ✅ Set session data immediately after successful signup
-        $_SESSION['user_id'] = $stmt->insert_id;
-        $_SESSION['first_name'] = $first_name;
-        $_SESSION['last_name'] = $last_name;
-        $_SESSION['email'] = $email;
-
-        // ✅ Redirect to homepage (now knows the user is logged in)
-        header("Location: stepx_index_home.php");
-    exit();
-} else {
-    if ($stmt->errno == 1062) {
-        echo "<p style='color:red;'>An account with that email already exists. Try logging in.</p>";
-    } else {
-        echo "Error: " . $stmt->error;
+    try {
+        if ($stmt->execute()) {
+            $_SESSION['user_id'] = $stmt->insert_id;
+            $_SESSION['first_name'] = $first_name;
+            $_SESSION['last_name'] = $last_name;
+            $_SESSION['email'] = $email;
+    
+            header("Location: stepx_index_home.php");
+            exit();
+        }
+    } catch (mysqli_sql_exception $e) {
+        if ($e->getCode() == 1062) {
+            echo "<p style='color:red;'>An account with that email already exists. Try logging in.</p>";
+        } else {
+            echo "Signup error: " . $e->getMessage();
+        }
     }
-}
+    
 
     $stmt->close();
 }
 $conn->close();
 ?>
-
-
 
 
 <!--stepx_signup.html-->
@@ -72,8 +69,8 @@ $conn->close();
 
     <div class="form-box">
       <div class="tabs">
-        <a href="stepx_signup.html" class="tab active">Sign Up</a>
-        <a href="stepx_login.html" class="tab">Log In</a>
+        <a href="stepx_signup.php" class="tab active">Sign Up</a>
+        <a href="stepx_login.php" class="tab">Log In</a>
         
       </div>
 

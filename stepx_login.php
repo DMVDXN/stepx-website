@@ -47,7 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close();
 ?>
 
-
 <!--stepx_login.html-->
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +54,7 @@ $conn->close();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StepX - Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="Loginstyles.css" />
 </head>
 <body>
@@ -64,7 +64,7 @@ $conn->close();
 
   <div class="form-box">
     <div class="tabs">
-      <a href="stepx_signup.html" class="tab">Sign up</a>
+      <a href="stepx_signup.php" class="tab">Sign up</a>
       <a href="#" class="tab active">Log in</a>
     </div>
 
@@ -99,7 +99,7 @@ $conn->close();
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
-    
+
 
     function setDarkMode() {
         document.body.classList.add('dark-mode');

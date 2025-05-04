@@ -4,6 +4,6 @@ session_unset(); // Clear all session variables
 session_destroy(); // Destroy the session
 
 // Redirect to login page
-header("Location: stepx_login.html");
+header("Location: stepx_login.php");
 exit;
 ?>
