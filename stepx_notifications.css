@@ -290,103 +290,83 @@ a:active {
 
 
 
-/* Base layout */
+/* Container Styling */
 .notification-page {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 1rem 2rem;
+    background-color: white;    ;
+    border-radius: 16px; /* ✅ Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
   
   .notification-page h1,
   .notification-page h2 {
     color: #222;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #ddd;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 2px solid black;
     padding-bottom: 0.5rem;
   }
   
   .placeholder,
   .no-reviews {
-    color: #777;
     font-style: italic;
-    margin: 1.5rem 0;
+    color: #777;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  /* Review Items */
+  .user-reviews {
+    margin-top: 1rem;
+  }
+  
+  .review-item {
+    margin-top: 1rem;
+    padding: 1.2rem 0;
+    border-top: 1px solid black;
+  }
+ 
+  .review-item strong {
+    display: block;
     font-size: 1.1rem;
+    color: #222;
+    margin-bottom: 0.4rem;
   }
   
-  .user-reviews .review-item {
-    border-top: 1px solid #ccc;
-    padding: 1rem 0;
-  }
-  
-  .user-reviews strong {
-    font-size: 1.1rem;
-    color: #333;
-  }
-  
-  .user-reviews .stars {
-    color: #ffcc00;
+  .review-item .stars {
     font-size: 1.2rem;
-    margin: 0.4rem 0;
+    color: #ffcc00;
+    margin-bottom: 0.5rem;
   }
   
-  .user-reviews p {
+  .review-item p {
     font-size: 0.95rem;
     color: #444;
-    margin: 0.5rem 0;
+    margin-bottom: 0.6rem;
   }
   
-  .review-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
-  
-  .edit-btn,
+  /* Delete Button */
   .delete-btn {
-    background-color: #0056e0;
-    color: #fff;
+    background-color: #e74c3c;
+    color: white;
     padding: 6px 14px;
-    text-decoration: none;
     border: none;
     border-radius: 6px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .edit-btn:hover {
-    background-color: #0042b5;
-  }
-  
-  .delete-btn {
-    background-color: #e74c3c;
+    transition: background-color 0.2s ease, transform 0.2s ease;
   }
   
   .delete-btn:hover {
     background-color: #c0392b;
+    transform: scale(1.05); /* Slight zoom effect */
   }
   
-  .inline-form {
-    display: inline;
-  }
-
-
-
-  /* 🌙 Dark mode styling */
-body.dark-mode {
-    background-color: #121212;
-    color: #eee;
-  }
-  
-  body.dark-mode .notification-page {
-    background-color: #1e1e1e;
-    border: 1px solid #333;
-  }
-  
+  /* Dark Mode Support */
   body.dark-mode .notification-page h1,
   body.dark-mode .notification-page h2 {
     color: #fff;
@@ -400,6 +380,52 @@ body.dark-mode {
   
   body.dark-mode .review-item {
     border-color: #333;
+
+  }
+  
+  body.dark-mode .review-item strong {
+    color: #fff;
+  }
+  
+  body.dark-mode .review-item p {
+    color: #ccc;
+  }
+  
+  body.dark-mode .delete-btn {
+    background-color: #cc3c3c;
+  }
+  
+  body.dark-mode .delete-btn:hover {
+    background-color: #a62c2c;
+  }
+
+
+
+  /* 🌙 Dark mode styling */
+body.dark-mode {
+    background-color: #121212;
+    color: #eee;
+  }
+  
+  body.dark-mode .notification-page {
+    background-color: #1e1e1e;
+    border-radius: 16px; /* ✅ Same rounded corners */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.03);
+  }
+  
+  body.dark-mode .notification-page h1,
+  body.dark-mode .notification-page h2 {
+    border-color: #ffffff;
+  }
+  
+  body.dark-mode .placeholder,
+  body.dark-mode .no-reviews {
+    color: #aaa;
+  }
+  
+  body.dark-mode .review-item {
+    border-color: #333;
+    border-top: 1px solid rgb(255, 255, 255);
   }
   
   body.dark-mode .user-reviews strong {
@@ -425,3 +451,4 @@ body.dark-mode {
   body.dark-mode .delete-btn:hover {
     background-color: #a62c2c;
   }
+
