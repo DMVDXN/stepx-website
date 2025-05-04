@@ -153,30 +153,19 @@ if ($user_id) {
 </div>
 
 <script>
-    let currentSlide = 0;
-
-    function changeSlide(direction) {
-        const slides = document.querySelectorAll('.brand-logo');
-        currentSlide += direction;
-
-        if (currentSlide < 0) {
-            currentSlide = slides.length - 1;
-        } else if (currentSlide >= slides.length) {
-            currentSlide = 0;
-        }
-
-        slides.forEach(slide => slide.style.display = 'none');
-        slides[currentSlide].style.display = 'block';
+    // Apply dark mode on page load if it was previously selected
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
     }
-
-    changeSlide(0);
 
     function setDarkMode() {
         document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
     }
 
     function setLightMode() {
         document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
     }
 </script>
 

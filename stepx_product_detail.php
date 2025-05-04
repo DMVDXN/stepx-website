@@ -268,13 +268,20 @@ document.querySelector('.favorite-btn').addEventListener('click', function (e) {
 
 
 <script>
-function setDarkMode() {
-      document.body.classList.add('dark-mode');
-  }
+    // Apply dark mode on page load if it was previously selected
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
 
-  function setLightMode() {
-      document.body.classList.remove('dark-mode');
-  }
+    function setDarkMode() {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+    }
+
+    function setLightMode() {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+    }
 </script>
 
 </body>
