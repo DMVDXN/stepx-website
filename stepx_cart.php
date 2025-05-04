@@ -30,27 +30,33 @@ $promo_discount = 0;
 $promo_error = "";
 
 // Promo code logic
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promo_code'])) {
-    $entered_code = trim($_POST['promo_code']);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['clear_promo'])) {
+        unset($_SESSION['applied_promo_code']);
+        $promo_discount = 0;
+    } elseif (isset($_POST['promo_code'])) {
+        $entered_code = trim($_POST['promo_code']);
 
-    $promo_sql = "SELECT * FROM promo_codes WHERE code = ? AND active = 1 AND (expiration_date IS NULL OR expiration_date >= CURDATE())";
-    $promo_stmt = $conn->prepare($promo_sql);
-    $promo_stmt->bind_param("s", $entered_code);
-    $promo_stmt->execute();
-    $promo_result = $promo_stmt->get_result();
+        $promo_sql = "SELECT * FROM promo_codes WHERE code = ? AND active = 1 AND (expiration_date IS NULL OR expiration_date >= CURDATE())";
+        $promo_stmt = $conn->prepare($promo_sql);
+        $promo_stmt->bind_param("s", $entered_code);
+        $promo_stmt->execute();
+        $promo_result = $promo_stmt->get_result();
 
-    if ($promo_row = $promo_result->fetch_assoc()) {
-        if (!empty($promo_row['discount_amount'])) {
-            $promo_discount = floatval($promo_row['discount_amount']);
-        } elseif (!empty($promo_row['discount_percent'])) {
-            $promo_discount = $subtotal * (floatval($promo_row['discount_percent']) / 100);
+        if ($promo_row = $promo_result->fetch_assoc()) {
+            if (!empty($promo_row['discount_amount'])) {
+                $promo_discount = floatval($promo_row['discount_amount']);
+            } elseif (!empty($promo_row['discount_percent'])) {
+                $promo_discount = $subtotal * (floatval($promo_row['discount_percent']) / 100);
+            }
+
+            $_SESSION['applied_promo_code'] = $entered_code;
+        } else {
+            $promo_error = "Invalid or expired promo code.";
         }
-
-        $_SESSION['applied_promo_code'] = $entered_code;
-    } else {
-        $promo_error = "Invalid or expired promo code.";
     }
 }
+
 
 $order_total = max(0, $subtotal + 9 - $promo_discount); // 9 is static sales tax
 ?>
@@ -139,20 +145,30 @@ $order_total = max(0, $subtotal + 9 - $promo_discount); // 9 is static sales tax
 
     <section class="cart-right">
         <h2>Order Summary</h2>
-        <form method="POST" class="promo-form">
-  <label for="promo">Promo Code</label>
-  <input type="text" id="promo" name="promo_code" placeholder="Enter code"
-         value="<?= htmlspecialchars($_POST['promo_code'] ?? '') ?>">
-  <button type="submit">Apply</button>
+        <form method="POST" class="promo-form" style="margin-bottom: 15px;">
+    <label for="promo">Promo Code</label>
+    <input type="text" id="promo" name="promo_code" placeholder="Enter code"
+           value="<?= htmlspecialchars($_SESSION['applied_promo_code'] ?? '') ?>">
+           <div class="promo-buttons">
+  <button type="submit" name="apply_promo">Apply</button>
+  <button type="submit" name="clear_promo" class="clear-btn">Clear</button>
+</div>
 </form>
 
-<?php if (!empty($promo_error)): ?>
-  <p class="promo-error"><?= htmlspecialchars($promo_error) ?></p>
-<?php elseif (!empty($_SESSION['applied_promo_code'])): ?>
-  <p class="promo-message">
-    Promo "<strong><?= htmlspecialchars($_SESSION['applied_promo_code']) ?></strong>" applied!
-  </p>
-<?php endif; ?>
+
+<?php
+$entered_code = trim($_POST['promo_code'] ?? '');
+
+if ($entered_code === '') {
+    // Clear session and don't show anything
+    unset($_SESSION['applied_promo_code']);
+} elseif (!empty($promo_error)) {
+    echo '<p class="promo-error">' . htmlspecialchars($promo_error) . '</p>';
+} elseif (!empty($_SESSION['applied_promo_code'])) {
+    echo '<p class="promo-message">Promo "<strong>' . htmlspecialchars($_SESSION['applied_promo_code']) . '</strong>" applied!</p>';
+}
+?>
+
 
 
         <div class="summary-line"><span>Sub Total</span><span id="subtotal-amount">$<?= number_format($subtotal, 2) ?></span></div>

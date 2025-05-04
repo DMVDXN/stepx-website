@@ -614,3 +614,9 @@ a:active {
 .promo-message {
   color: green;
 }
+
+/* Clear button */
+.promo-form button[name="clear_promo"] {
+    background-color: #ccc; /* light gray */
+    color: #000; /* black text for contrast */
+  }
