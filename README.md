@@ -1,10 +1,12 @@
 StepX
 
+
 #Project name and description
   *StepX is a modern eCommerce website built to sell sneakers online. It includes user authentication, dynamic
   product listings, a shopping cart system, wishlist/favorites, and review functionality — all styled with a clean, 
   responsive UI and light/dark mode support. The project was built using HTML, CSS, PHP, MySQL, and 
   JavaScript, and is locally hosted using MAMP.
+
 
 #List of features implemented 
 
@@ -43,6 +45,7 @@ StepX
     -Consistent navigation bar across all pages
     -Includes logo, search bar, cart, favorites, bell (notifications), and user icon
 
+
 #List of features not implemented
   *Notifications system (alerts, messages)
   *Checkout / payment gateway integration
@@ -52,11 +55,13 @@ StepX
   *Profile image uploads
   *Favorite heart animation on favorites page
 
+
 #Any known bugs or limitations
   *No front-end validation on login/signup forms
   *Star rating display does not support half-stars
   *No pagination for product listing or reviews
   *Error handling is minimal (e.g., invalid product ID)
+
 
 #Credits (if applicable)
   *Developer: Daniel Onyejiekwe
