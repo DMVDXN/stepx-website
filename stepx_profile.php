@@ -1,11 +1,54 @@
 <!--stepx_profile.php-->
 <?php
 session_start();
+include 'stepx_db.php';
 
-$first_name = $_SESSION['first_name'] ?? 'John';
-$last_name = $_SESSION['last_name'] ?? 'Doe';
-$email = $_SESSION['email'] ?? 'john@example.com';
+$user_id = $_SESSION['user_id'] ?? null;
+
+if (!$user_id) {
+    header("Location: stepx_login.html");
+    exit();
+}
+
+$success = $error = "";
+
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $first = trim($_POST['first_name']);
+    $last = trim($_POST['last_name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    if (!empty($password)) {
+        $hashed = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssi", $first, $last, $email, $hashed, $user_id);
+    } else {
+        $sql = "UPDATE users SET first_name = ?, last_name = ?, email = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssi", $first, $last, $email, $user_id);
+    }
+
+    if ($stmt->execute()) {
+        $_SESSION['first_name'] = $first;
+        $_SESSION['last_name'] = $last;
+        $_SESSION['email'] = $email;
+        $success = "Profile updated successfully!";
+    } else {
+        $error = "Failed to update profile.";
+    }
+}
+
+// Always get fresh user data from DB
+$query = $conn->prepare("SELECT first_name, last_name, email FROM users WHERE id = ?");
+$query->bind_param("i", $user_id);
+$query->execute();
+$query->bind_result($first_name, $last_name, $email);
+$query->fetch();
+$query->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,17 +77,21 @@ $email = $_SESSION['email'] ?? 'john@example.com';
         <i class="fa fa-shopping-cart"></i>
     </a>
 
+    <a href="stepx_notifications.php">
     <i class="fa fa-bell"></i>
+    </a>
 
     <div class="profile-hover">
-  <a href="stepx_profile.php">
+    <a href="stepx_profile.php">
     <i class="fa fa-user"></i>
   </a>
+
   <?php if (isset($_SESSION['first_name'])): ?>
     <div class="welcome-tooltip">
       Welcome, <?= htmlspecialchars($_SESSION['first_name']) ?>!
     </div>
   <?php endif; ?>
+  
 </div>    
 </div>
 </header>

@@ -1,6 +1,24 @@
-<!--stepx_index.home.php-->
 <?php
 session_start();
+include 'stepx_db.php';
+
+$user_id = $_SESSION['user_id'] ?? null;
+if (!$user_id) {
+    header("Location: stepx_login.html");
+    exit();
+}
+
+// Fetch all reviews submitted by this user
+$sql = "SELECT r.*, p.name AS product_name 
+        FROM reviews r 
+        JOIN products p ON r.product_id = p.id 
+        WHERE r.user_id = ? 
+        ORDER BY r.created_at DESC";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$reviews = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +27,7 @@ session_start();
     <meta charset="UTF-8">
     <title>StepX - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="stepx_styles.css">
+    <link rel="stylesheet" href="stepx_notifications.css">
 </head>
 <body>
 
@@ -64,42 +82,36 @@ session_start();
 
 <div style="height: 50px;"></div>
 
-<!-- Advertisement Banner Section (With Arrows for Navigation) -->
-<div class="advertisement-banner">
-    <button class="arrow-left" onclick="changeSlide(-1)">&#10094;</button>
-    <div class="banner-images">
-        <div class="brand-logo">
-            <img src="images/nike.png" alt="Nike">
-        </div>
-        <div class="brand-logo">
-            <img src="images/jordan.png" alt="Jordan">
-        </div>
-        <div class="brand-logo">
-            <img src="images/new balance.png" alt="New Balance">
-        </div>
-    </div>
-    <button class="arrow-right" onclick="changeSlide(1)">&#10095;</button>
-</div>
+<div class="notification-page">
+    <h1>Notifications</h1>
+    <p class="placeholder">You don’t have any notifications yet.</p>
 
-<div class="product-container">
-    <h1>Recommended For You</h1>
-    <?php
-    include 'stepx_db.php';
-    $sql = "SELECT * FROM products";
-    $result = $conn->query($sql);
-
-    while ($row = $result->fetch_assoc()): ?>
-        <a href="stepx_product_detail.php?id=<?php echo $row['id']; ?>" class="product">
-            <img src="<?php echo $row['image_path']; ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
-            <div class="product-info">
-                <h2><?php echo htmlspecialchars($row['name']); ?></h2>
-                <p>$<?php echo htmlspecialchars($row['price']); ?></p>
+    <h2>Your Reviews</h2>
+    <?php if ($reviews->num_rows > 0): ?>
+        <div class="user-reviews">
+        <?php while ($row = $reviews->fetch_assoc()): ?>
+            <div class="review-item">
+                <strong><?= htmlspecialchars($row['product_name']) ?></strong>
+                <div class="stars">
+                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                        <i class="fa<?= $i <= $row['rating'] ? 's' : 'r' ?> fa-star"></i>
+                    <?php endfor; ?>
+                </div>
+                <p><?= htmlspecialchars($row['comment']) ?></p>
             </div>
-        </a>
-    <?php endwhile;
+            <form method="POST" action="delete_review_notifications.php" onsubmit="return confirm('Delete this review?');">
+    <input type="hidden" name="review_id" value="<?= $row['id'] ?>">
+    <button type="submit" class="delete-btn">Delete</button>
+</form>
 
-    ?>
+
+        <?php endwhile; ?>
+        </div>
+    <?php else: ?>
+        <p class="no-reviews">You haven’t written any reviews yet.</p>
+    <?php endif; ?>
 </div>
+
 
 <div class="theme-buttons">
     <button onclick="setDarkMode()">
