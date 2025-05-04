@@ -357,6 +357,7 @@ a:active {
 .profile-header i {
     font-size: 50px;
     color: #333;
+    font-size: 6rem; /* or whatever it is now */
 }
 
 .profile-name {
@@ -416,3 +417,47 @@ h1, .edit-profile-container h1, .heading-wrapper h1 {
     color: #f1f1f1;
     border-color: #444;
   }
+
+
+  .alert {
+    padding: 0.8rem 1.2rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  .success-alert {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .error-alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Optional: dark mode styles */
+  body.dark-mode .success-alert {
+    background-color: #366336;
+    color: #ffffff;
+    border-color: #3a6643;
+  }
+  
+  body.dark-mode .error-alert {
+    background-color: #ff0000;
+    color: #fcfcfc;
+    border-color: #a33;
+  }
+  
