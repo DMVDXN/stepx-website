@@ -48,8 +48,8 @@ if ($user_id) {
     </a>
 
     <a href="stepx_cart.php">
-        <i class="fa fa-shopping-cart"></i>
-    </a>
+  <i class="fa fa-shopping-cart" style="color: #0056e0;"></i>
+</a>
 
     <a href="stepx_notifications.php">
     <i class="fa fa-bell"></i>

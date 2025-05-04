@@ -82,9 +82,10 @@ $query->close();
     </a>
 
     <div class="profile-hover">
-    <a href="stepx_profile.php">
-    <i class="fa fa-user"></i>
+  <a href="stepx_profile.php">
+    <i class="fa fa-user" style="color: #0056e0;"></i>
   </a>
+</div>
 
   <?php if (isset($_SESSION['first_name'])): ?>
     <div class="welcome-tooltip">

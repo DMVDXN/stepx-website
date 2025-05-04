@@ -44,9 +44,10 @@ $result = $stmt->get_result();
 
     <div class="icons">
     <a href="stepx_favorites.php" class="favorites">
-        <i class="fa fa-heart"></i>
-        <span>Favorites</span>
-    </a>
+  <i class="fa fa-heart" style="color: red;"></i>
+  <span style="color: red;">Favorites</span>
+</a>
+
 
     <a href="stepx_cart.php">
         <i class="fa fa-shopping-cart"></i>
