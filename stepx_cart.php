@@ -145,11 +145,18 @@ if ($user_id) {
         <div class="summary-line"><span>Shipping: Standard</span><span>FREE</span></div>
         <div class="summary-line"><span>Sales tax</span><span>$9.00</span></div>
         <div class="summary-line"><span>Promo Discount</span><span>–$<?= number_format($promo_discount, 2) ?></span></div>
-<div class="summary-line total">
+        <div class="summary-line total">
     <span>Order Total</span>
     <span>$<?= number_format($subtotal + 9 - $promo_discount, 2) ?></span>
 </div>
-        <button class="checkout-btn">Checkout</button>
+
+<?php if (!empty($cart_items)): ?>
+  <form action="stepx_checkout.php" method="POST">
+  <button type="submit" class="checkout-btn">Checkout</button>
+  </form>
+<?php endif; ?>
+
+</form>
     </section>
 </main>
 
