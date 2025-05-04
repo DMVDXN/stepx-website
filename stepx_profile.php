@@ -69,7 +69,7 @@ $email = $_SESSION['email'] ?? 'john@example.com';
             <button type="submit" class="save-btn">Save</button>
         </form>
 
-        <a href="stepxlogout.php" class="signout-btn">Sign out</a>
+        <a href="stepx_logout.php" class="signout-btn">Sign out</a>
     </div>
 
     <div class="theme-buttons">

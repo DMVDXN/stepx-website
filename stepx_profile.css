@@ -186,7 +186,7 @@ form input {
     margin-top: 20px;
     padding: 12px 40px;
     background-color: black;
-    color: white;
+    color: white !important;  /* 👈 Ensures text stays white */
     border-radius: 20px;
     text-decoration: none;
     font-size: 16px;

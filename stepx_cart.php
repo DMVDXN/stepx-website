@@ -12,10 +12,10 @@ $cart_items = [];
 $subtotal = 0;
 
 if ($user_id) {
-    $sql = "SELECT c.id AS cart_id, p.name, p.image_path, p.price, c.quantity, c.size
-            FROM cart c
-            JOIN products p ON c.product_id = p.id
-            WHERE c.user_id = ?";
+    $sql = "SELECT c.id AS cart_id, c.product_id, p.name, p.image_path, p.price, c.quantity, c.size
+        FROM cart c
+        JOIN products p ON c.product_id = p.id
+        WHERE c.user_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $user_id);
     $stmt->execute();
@@ -82,31 +82,38 @@ if ($user_id) {
                 $subtotal += $total_price;
             ?>
                 <div class="cart-item">
-                    <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
-                    <div class="item-info">
-    <div class="item-details">
-        <h2><?= htmlspecialchars($item['name']) ?></h2>
-        <p>Unisex</p>
-        <p>Size: <?= htmlspecialchars($item['size']) ?> | Standard</p>
+    <a href="stepx_product_detail.php?id=<?= $item['product_id'] ?>">
+        <img src="<?= htmlspecialchars($item['image_path']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
+    </a>
+    <div class="item-info">
+        <div class="item-details">
+        <h2>
+  <a href="stepx_product_detail.php?id=<?= $item['product_id'] ?>">
+    <?= htmlspecialchars($item['name']) ?>
+  </a>
+</h2>
+            <p>Unisex</p>
+            <p>Size: <?= htmlspecialchars($item['size']) ?> | Standard</p>
 
-        <div class="qty-controls">
-            <button class="decrease" data-cart-id="<?= $item['cart_id'] ?>">–</button>
-            <span class="qty" data-cart-id="<?= $item['cart_id'] ?>">QTY <?= $item['quantity'] ?></span>
-            <button class="increase" data-cart-id="<?= $item['cart_id'] ?>">+</button>
+            <div class="qty-controls">
+                <button class="decrease" data-cart-id="<?= $item['cart_id'] ?>">–</button>
+                <span class="qty" data-cart-id="<?= $item['cart_id'] ?>">QTY <?= $item['quantity'] ?></span>
+                <button class="increase" data-cart-id="<?= $item['cart_id'] ?>">+</button>
+            </div>
+        </div>
+
+        <div class="item-price">
+            <p class="price" data-cart-id="<?= $item['cart_id'] ?>" data-unit-price="<?= $item['price'] ?>">
+                $<?= number_format($item['price'] * $item['quantity'], 2) ?>
+            </p>
         </div>
     </div>
-
-    <div class="item-price">
-        <p class="price" data-cart-id="<?= $item['cart_id'] ?>" data-unit-price="<?= $item['price'] ?>">
-            $<?= number_format($item['price'] * $item['quantity'], 2) ?>
-        </p>
-    </div>
+    <form method="POST" action="remove_from_cart.php">
+        <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
+        <button class="remove-btn"><i class="fa fa-times"></i></button>
+    </form>
 </div>
-                    <form method="POST" action="remove_from_cart.php">
-                        <input type="hidden" name="cart_id" value="<?= $item['cart_id'] ?>">
-                        <button class="remove-btn"><i class="fa fa-times"></i></button>
-                    </form>
-                </div>
+
             <?php endforeach; ?>
         <?php else: ?>
             <p>Your cart is currently empty.</p>
@@ -213,4 +220,3 @@ document.querySelectorAll('.increase, .decrease').forEach(button => {
 
 </body>
 </html>
-
