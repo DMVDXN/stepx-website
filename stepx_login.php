@@ -35,10 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: stepx_index_home.php");
             exit();
         } else {
-            echo "Invalid credentials.";
+            header("Location: stepx_login.php?error=Invalid%20credentials.");
+exit();
         }
     } else {
-        echo "No account found with that email.";
+        header("Location: stepx_login.php?error=No%20account%20found%20with%20that%20email.");
+exit();
+
     }
 
     $stmt->close();
@@ -77,9 +80,11 @@ $conn->close();
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Password*" required>
 
-      <div class="error-message">
-        <?php if (isset($_GET['error'])) echo htmlspecialchars($_GET['error']); ?>
-      </div>
+      <?php if (isset($_GET['error'])): ?>
+  <div class="error-message">
+    <?php echo htmlspecialchars($_GET['error']); ?>
+  </div>
+<?php endif; ?>
 
       <button type="submit" class="btn">Log In</button>
     </form>

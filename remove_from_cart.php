@@ -1,3 +1,4 @@
+<!--remove_from_cart.php-->
 <?php
 include 'stepx_db.php';
 session_start();

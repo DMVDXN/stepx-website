@@ -21,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("Invalid email format.");
+        header("Location: stepx_signup.php?error=Invalid%20email%20format.");
+exit();
     }
 
     $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
@@ -40,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } catch (mysqli_sql_exception $e) {
         if ($e->getCode() == 1062) {
-            echo "<p style='color:red;'>An account with that email already exists. Try logging in.</p>";
+            header("Location: stepx_signup.php?error=An%20account%20with%20that%20email%20already%20exists.%20Try%20logging%20in.");
+exit();
         } else {
             echo "Signup error: " . $e->getMessage();
         }
@@ -71,8 +73,13 @@ $conn->close();
       <div class="tabs">
         <a href="stepx_signup.php" class="tab active">Sign Up</a>
         <a href="stepx_login.php" class="tab">Log In</a>
-        
       </div>
+
+      <?php if (isset($_GET['error'])): ?>
+  <div class="error-message">
+    <?php echo htmlspecialchars($_GET['error']); ?>
+  </div>
+<?php endif; ?>
 
       <form action="stepx_signup.php" method="POST">
         <h2>Sign Up</h2>

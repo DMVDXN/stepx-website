@@ -1,3 +1,4 @@
+<!--stepx_notifications.php-->
 <?php
 session_start();
 include 'stepx_db.php';
@@ -128,26 +129,6 @@ $reviews = $stmt->get_result();
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
-
-    let currentSlide = 0;
-
-    function changeSlide(direction) {
-        const slides = document.querySelectorAll('.brand-logo');
-        currentSlide += direction;
-
-        if (currentSlide < 0) {
-            currentSlide = slides.length - 1;
-        } else if (currentSlide >= slides.length) {
-            currentSlide = 0;
-        }
-
-        // Hide all slides
-        slides.forEach(slide => slide.style.display = 'none');
-        slides[currentSlide].style.display = 'block';
-    }
-
-    // Initial display setup
-    changeSlide(0);
 
     function setDarkMode() {
         document.body.classList.add('dark-mode');
